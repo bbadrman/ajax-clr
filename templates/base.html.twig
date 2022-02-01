@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}
+                Welcome!
+            {% endblock %}
+        </title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+       {# <link rel="stylesheet" href="{{ asset('backend/fonts/css/font-awesome.css') }}">
+       <link rel="stylesheet" href="{{ asset('backend/fonts/css/font-awesome.min.css') }}">
+         #}
+        {% block stylesheets %}
+
+
+       <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+     
+
+           {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
