@@ -34,21 +34,58 @@
                         <a href="#" class="btn btn-primary">
                             Lire la suite
                         </a>
-                        <a href="#" class="btn btn-like js-like">
+                        <a href="{{ path('post_like', {'id': post.id}) }}" class="btn btn-like js-like">
 
                             {% if app.user and post.isLikedByUser(app.user) %}
-                                <i class="far fa-thumbs-up"></i>
-                            {% else %}
                                 <i class="fas fa-thumbs-up"></i>
+                            {% else %}
+                                <i class="far fa-thumbs-up"></i>
                             {% endif %}
 
                             <span class="js-likes">  {{ post.likes | length  }} </span>
                             
-                            <span class="js-likes"> J'aime </span>
+                            <span class="js-label"> J'aime </span>
                         </a>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+
+     function onClickBtnLike(event){
+         event.preventDefault();
+
+         const url = this.href;
+         const spanCount = this.querySelector('span.js-likes');
+         const icone = this.querySelector('i');
+
+         axios.get(url).then(function(response){
+             spanCount.textContent = response.data.likes;
+
+             if(icone.classList.contains('fas')){
+                icone.classListe.replace('fas' , 'far');
+                }
+             else {
+                icone.classList.replace('far', 'fas');
+                  }
+         }).catch(function (error){
+             if (error.response.status === 403) {
+                 window.alert("Vous ne pouvez pas liker un article si vous n'éter pas connecte !");
+             } else {
+                 window.alert("Une erreur s'est produite, réessayer plus tard");
+             }
+         });
+     }
+
+     document.querySelectorAll('a.js-like').forEach(function(link){
+         link.addEventListener('click', onClickBtnLike);
+     })
+
+</script>
 {% endblock %}
