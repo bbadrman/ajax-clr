@@ -29,7 +29,7 @@ security:
 
             logout:
                 path: logout
-                target: login
+                target: /
 
 
             # activate different ways to authenticate

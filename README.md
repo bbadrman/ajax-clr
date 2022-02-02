@@ -74,3 +74,6 @@ The easiest way is to install the apache Symfony pack by executing the following
 ## Main Tasks
 
 To do ...
+
+
+## NB : a note que dans symfony 5 il faut remplacer ObjectManager par EntityManagerInterface dans symfony 4
